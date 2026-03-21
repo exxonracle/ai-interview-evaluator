@@ -7,3 +7,4 @@ dataset_audio/
 *.wav
 model.pkl
 dataset.csv
+random/
