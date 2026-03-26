@@ -6,15 +6,15 @@ model = joblib.load("model.pkl")
 def generate_final_score(nlp_result, speech_result):
 
     features = [[
-        nlp_result.get("word_count", 0),
-        nlp_result.get("sentiment_score", 0),
-        speech_result.get("words_per_minute", 0),
-        speech_result.get("pause_segments", 0)
+        speech_result.get("tone_score", 0),
+        speech_result.get("clarity_score", 0),
+        speech_result.get("confidence_score", 0),
+        speech_result.get("flow_score", 0)
     ]]
 
-    predicted_score = model.predict(features)[0]
+    predicted_score = float(model.predict(features)[0])
 
-    final_score = round(min(max(predicted_score, 0), 10), 2)
+    final_score = float(round(min(max(predicted_score, 0), 10), 2))
 
     if final_score >= 8:
         level = "Excellent"
