@@ -1,16 +1,21 @@
-from fastapi import FastAPI, UploadFile, File, Form
-from typing import Optional
-import shutil
 import os
-from services.scoring import generate_final_score
+import shutil
+from typing import Optional
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
+# Load environment variables
+load_dotenv()
+
+from services.scoring import generate_final_score
 from services.speech_to_text import transcribe_audio
 from services.nlp_analysis import analyze_text
 from services.speech_features import extract_speech_features
 from services.llm_feedback import generate_audio_feedback
 from services.answer_accuracy import evaluate_answer_accuracy
 from services.resume_screening import extract_resume_text, extract_key_nouns, screen_resume
+
 
 app = FastAPI()
 

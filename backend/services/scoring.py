@@ -1,6 +1,6 @@
 import joblib
 
-# load trained model
+
 model = joblib.load("model.pkl")
 
 def generate_final_score(nlp_result, speech_result):

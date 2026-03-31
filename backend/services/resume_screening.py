@@ -2,6 +2,11 @@ import os
 import json
 from PyPDF2 import PdfReader
 from openai import AsyncOpenAI
+from dotenv import load_dotenv
+from .utils import extract_json
+
+# Load environment variables
+load_dotenv()
 
 api_key = os.getenv("GROQ_API_KEY", "MISSING_KEY")
 client = AsyncOpenAI(
@@ -69,11 +74,13 @@ If a section has no information, write "Not mentioned in resume." for that secti
                 {"role": "system", "content": "You are an expert HR recruiter and resume screener. Always respond with valid JSON only."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=500,
-            temperature=0.5
+            max_tokens=600,
+            temperature=0.3,
+            response_format={"type": "json_object"}
         )
 
-        result = json.loads(response.choices[0].message.content)
+        raw_content = response.choices[0].message.content
+        result = json.loads(extract_json(raw_content))
 
         # Weighted score: projects (35%) + experience (35%) + education (15%) + skills (15%)
         exp_score = float(result.get("experience_score", 5))
@@ -105,3 +112,4 @@ If a section has no information, write "Not mentioned in resume." for that secti
             "sections": None,
             "breakdown": None
         }
+

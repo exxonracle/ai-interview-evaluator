@@ -1,0 +1,24 @@
+fastapi
+uvicorn
+openai
+python-dotenv
+pypdf2
+python-docx
+librosa
+soundfile
+numpy
+PyPDF2
+python-multipart
+    
+# Speech to Text
+openai-whisper
+torch
+transformers
+    
+# Metrics
+scikit-learn
+pandas
+    
+# Audio
+pydub
+scipy

@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 import joblib
 
-# Expanded sample dataset matching tone, confidence, flow, clarity priorities
+
 data = {
     "tone_score": [5.0, 7.5, 8.0, 9.0, 4.0, 6.0],
     "clarity_score": [2.0, 5.0, 8.0, 10.0, 3.0, 7.0],
@@ -14,7 +14,7 @@ data = {
 
 df = pd.DataFrame(data)
 
-# WPM causes wild linear regression extrapolations because it spans from 0-160, so it is removed from the ML mathematical engine completely and kept strictly for the LLM feedback.
+
 X = df[["tone_score", "clarity_score", "confidence_score", "flow_score"]]
 y = df["score"]
 

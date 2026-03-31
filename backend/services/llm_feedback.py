@@ -1,5 +1,9 @@
 import os
 from openai import AsyncOpenAI
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # uses GROQ_API_KEY env var, falls back to prevent crash on import
 api_key = os.getenv("GROQ_API_KEY", "MISSING_KEY")
@@ -7,6 +11,7 @@ client = AsyncOpenAI(
     base_url="https://api.groq.com/openai/v1",
     api_key=api_key
 )
+
 
 async def generate_audio_feedback(nlp_result: dict, speech_result: dict, final_evaluation: dict, transcription: str) -> str:
     if api_key == "MISSING_KEY":
