@@ -7,7 +7,6 @@ python-docx
 librosa
 soundfile
 numpy
-PyPDF2
 python-multipart
     
 # Speech to Text
@@ -18,7 +17,15 @@ transformers
 # Metrics
 scikit-learn
 pandas
+joblib
+textblob
     
 # Audio
 pydub
 scipy
+
+# Hiring Platform
+aiosqlite
+reportlab
+httpx
+

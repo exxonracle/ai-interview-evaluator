@@ -8,3 +8,5 @@ dataset_audio/
 model.pkl
 dataset.csv
 random/
+*.db
+*.log
